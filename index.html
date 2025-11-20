@@ -64,7 +64,6 @@
             border-radius: 15px;
             cursor: pointer;
             transition: all 0.3s ease;
-            text-decoration: none;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -105,6 +104,100 @@
             font-size: 0.9em;
         }
 
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 1200px;
+            height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+            animation: slideUp 0.3s ease;
+        }
+
+        .modal-header {
+            padding: 20px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px 15px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            color: white;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .close-button {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .iframe-container {
+            flex: 1;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { 
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to { 
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 40px 25px;
@@ -122,6 +215,19 @@
             .admin-button {
                 min-width: 100%;
             }
+
+            .modal-content {
+                width: 95%;
+                height: 95vh;
+            }
+
+            .modal-header {
+                padding: 15px 20px;
+            }
+
+            .modal-title {
+                font-size: 1.2em;
+            }
         }
     </style>
 </head>
@@ -131,22 +237,82 @@
         <p class="subtitle">Welcome to your restaurant management dashboard. Choose an option below to get started with setting up your restaurant or building your menu.</p>
         
         <div class="buttons-container">
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_b54RHgM6HWbXm4cm6ZmsvX4EF7NnFwWT8YzK4k3mLKp3BQ/viewform?usp=header" class="admin-button" target="_blank" rel="noopener noreferrer">
+            <button class="admin-button" onclick="openModal('menu')">
                 <div class="button-icon">📋</div>
                 <div class="button-title">Menu Builder</div>
                 <div class="button-description">Create and customize your restaurant menu items, add descriptions, prices, and photos</div>
-            </a>
+            </button>
             
-            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdN2JJ5oFP7vXwj5UmZeSvCUUykLsXDWN3qRryi96e_IpR61g/viewform?usp=header" class="admin-button" target="_blank" rel="noopener noreferrer">
+            <button class="admin-button" onclick="openModal('setup')">
                 <div class="button-icon">⚙️</div>
                 <div class="button-title">Restaurant Setup</div>
                 <div class="button-description">Configure your restaurant details, hours, location, and general settings</div>
-            </a>
+            </button>
         </div>
         
         <div class="footer">
             <p>Need help? Contact support for assistance</p>
         </div>
     </div>
+
+    <!-- Menu Builder Modal -->
+    <div id="menuModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">📋 Menu Builder</div>
+                <button class="close-button" onclick="closeModal('menu')">✕</button>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc_b54RHgM6HWbXm4cm6ZmsvX4EF7NnFwWT8YzK4k3mLKp3BQ/viewform?embedded=true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Restaurant Setup Modal -->
+    <div id="setupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title">⚙️ Restaurant Setup</div>
+                <button class="close-button" onclick="closeModal('setup')">✕</button>
+            </div>
+            <div class="iframe-container">
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdN2JJ5oFP7vXwj5UmZeSvCUUykLsXDWN3qRryi96e_IpR61g/viewform?embedded=true"></iframe>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(type) {
+            const modalId = type === 'menu' ? 'menuModal' : 'setupModal';
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(type) {
+            const modalId = type === 'menu' ? 'menuModal' : 'setupModal';
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+                document.body.style.overflow = 'auto';
+            }
+        });
+    </script>
 </body>
 </html>
