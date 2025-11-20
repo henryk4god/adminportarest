@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Admin Portal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 800px;
+            width: 100%;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        h1 {
+            color: #2d3748;
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .subtitle {
+            color: #718096;
+            font-size: 1.1em;
+            margin-bottom: 50px;
+            line-height: 1.6;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .admin-button {
+            flex: 1;
+            min-width: 280px;
+            max-width: 340px;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .admin-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.6);
+        }
+
+        .admin-button:active {
+            transform: translateY(-2px);
+        }
+
+        .button-icon {
+            font-size: 3em;
+            margin-bottom: 5px;
+        }
+
+        .button-title {
+            color: white;
+            font-size: 1.4em;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .button-description {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 0.95em;
+            line-height: 1.5;
+        }
+
+        .footer {
+            margin-top: 50px;
+            color: #a0aec0;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 25px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            .buttons-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .admin-button {
+                min-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍽️ Restaurant Admin Portal</h1>
+        <p class="subtitle">Welcome to your restaurant management dashboard. Choose an option below to get started with setting up your restaurant or building your menu.</p>
+        
+        <div class="buttons-container">
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSc_b54RHgM6HWbXm4cm6ZmsvX4EF7NnFwWT8YzK4k3mLKp3BQ/viewform?usp=header" class="admin-button" target="_blank" rel="noopener noreferrer">
+                <div class="button-icon">📋</div>
+                <div class="button-title">Menu Builder</div>
+                <div class="button-description">Create and customize your restaurant menu items, add descriptions, prices, and photos</div>
+            </a>
+            
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSdN2JJ5oFP7vXwj5UmZeSvCUUykLsXDWN3qRryi96e_IpR61g/viewform?usp=header" class="admin-button" target="_blank" rel="noopener noreferrer">
+                <div class="button-icon">⚙️</div>
+                <div class="button-title">Restaurant Setup</div>
+                <div class="button-description">Configure your restaurant details, hours, location, and general settings</div>
+            </a>
+        </div>
+        
+        <div class="footer">
+            <p>Need help? Contact support for assistance</p>
+        </div>
+    </div>
+</body>
+</html>
